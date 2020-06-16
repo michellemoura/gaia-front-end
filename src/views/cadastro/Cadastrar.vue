@@ -1,149 +1,167 @@
 <template>
-  <div>
-  <div class="cadastro"> 
-    <h1 id="titulo"> Cadastro </h1>
+  <div class="container mt-2" >
+    <b-form @submit="onSubmit" @reset="onReset">
+      <b-row>
+        <b-form-group
+          id="input-nome"
+          label="Nome"
+          label-for="input-1"
+          class="col-md-6"
+        >
+          <b-form-input
+            id="input-1"
+            v-model="form.nome"
+            type="text"
+            required
+            placeholder="Digite seu nome"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          id="input-sobrenome"
+          label="Sobreome"
+          label-for="input-2"
+          class="col-md-6"
+        >
+          <b-form-input
+            id="input-2"
+            v-model="form.sobrenome"
+            type="text"
+            required
+            placeholder="Digite seu sobrenome"
+          ></b-form-input>
+        </b-form-group>
+<b-form-group
+          id="input-cidade"
+          label="Cidade"
+          label-for="input-2"
+          class="col-md-6"
+        >
+          <b-form-input
+            id="input-2"
+            v-model="form.cidade"
+            type="text"
+            required
+            placeholder="Digite sua cidade"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          id="input-estado"
+          label="Estado"
+          label-for="input-2"
+          class="col-md-6"
+        >
+          <b-form-input
+            id="input-2"
+            v-model="form.estado"
+            type="text"
+            required
+            placeholder="Digite seu Estado"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          id="input-cep"
+          label="Cep"
+          label-for="input-2"
+          class="col-md-6"
+        >
+          <b-form-input
+            id="input-2"
+            v-model="form.cep"
+            type="text"
+            required
+            placeholder="Digite seu CEP"
+          ></b-form-input>
+        </b-form-group>
+
+         <b-form-group
+          id="input-logradouro"
+          label="Logradouro"
+          label-for="input-2"
+          class="col-md-6"
+        >
+          <b-form-input
+            id="input-2"
+            v-model="form.logradouro"
+            type="text"
+            required
+            placeholder="Digite seu logradouro"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          id="input-email"
+          label="Email"
+          label-for="input-2"
+          class="col-md-6"
+        >
+          <b-form-input
+            id="input-2"
+            v-model="form.email"
+            type="text"
+            required
+            placeholder="Digite seu email"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          id="input-user"
+          label="Usuário"
+          label-for="input-2"
+          class="col-md-6"
+        >
+          <b-form-input
+            id="input-2"
+            v-model="form.user"
+            type="text"
+            required
+            placeholder="Digite seu usuário"
+          ></b-form-input>
+        </b-form-group>
+
+
+
+        <b-form-group
+          id="input-senha"
+          label="Senha"
+          label-for="input-2"
+          class="col-md-6"
+        >
+          <b-form-input
+            id="input-2"
+            v-model="form.senha"
+            type="text"
+            required
+            placeholder="Digite sua senha"
+          ></b-form-input>
+        </b-form-group>
+
+      </b-row>
+    </b-form>
   </div>
-  <form class="needs-validation" novalidate>
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom01">Primeiro nome</label>
-      <input type="text" class="form-control" id="validationCustom01" placeholder="Nome" value="Mark" required v-model="instituicao.nome">
-      <div class="valid-feedback">
-        Tudo certo!
-      </div>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom02">Sobrenome</label>
-      <input type="text" class="form-control" id="validationCustom02" placeholder="Sobrenome" value="Otto" required v-model="instituicao.sobrenome">
-      <div class="valid-feedback">
-        Tudo certo!
-      </div>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationCustomUsername">Usuário</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend">@</span>
-        </div>
-        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Usuário" aria-describedby="inputGroupPrepend" required v-model="instituicao.usuario">
-        <div class="invalid-feedback">
-          Por favor, escolha um nome de usuário.
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-6 mb-3">
-      <label for="validationCustom03">Cidade</label>
-      <input type="text" class="form-control" id="validationCustom03" placeholder="Cidade" required v-model="instituicao.cidade">
-      <div class="invalid-feedback">
-        Por favor, informe uma cidade válida.
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="validationCustom04">Estado</label>
-      <input type="text" class="form-control" id="validationCustom04" placeholder="Estado" required v-model="instituicao.estado">
-      <div class="invalid-feedback">
-        Por favor, informe um estado válido.
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="validationCustom05">CEP</label>
-      <input type="text" class="form-control" id="validationCustom05" placeholder="CEP" required v-model="instituicao.cep">
-      <div class="invalid-feedback">
-        Por favor, informe um CEP válido.
-      </div>
-    </div>
-  </div>
-   <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email"
-             class="form-control" 
-             id="inputEmail4"
-             placeholder="Email" 
-             v-model="email">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Senha</label>
-      <input type="password" 
-             class="form-control" 
-             id="inputPassword4" 
-             placeholder="Senha" 
-             v-model="senha">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputAddress">Endereço</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Rua dos Bobos, nº 0" v-model="instituicao.endereco">
-  </div>
-  <div class="form-group">
-    <label for="inputAddress2">Endereço 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartamento, hotel, casa, etc." v-model="instituicao.endereco2">
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">Cidade</label>
-      <input type="text" class="form-control" id="inputCity" v-model="instituicao.cidade">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputEstado">Estado</label>
-      <select id="inputEstado" class="form-control" >
-        <option selected>Escolher...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputCEP">CEP</label>
-      <input type="text" class="form-control" id="inputCEP" v-model="instituicao.ceep">
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required v-model="instituicao.validade">
-      <label class="form-check-label" for="invalidCheck">
-        Concordo com os termos e condições
-      </label>
-      <div class="invalid-feedback">
-        Você deve concordar, antes de continuar.
-      </div>
-        <button @click="SingUp" type="submit">Enviar</button>
-      <span>ou retorne ao  
-        <router-link to="/login" login>login.</router-link>
-        </span>
-    </div>
-  </div>
-</form>
-</div>
 </template>
 
 <script>
-/* eslint-disable */ 
-// import firebase from "firebase"
 
 export default {
-  data(){
-    return{
-      instituicao:{
-        nome:"",
-        sobrenome:"",
-        usuario:"",
-        cidade:"",
-        estado:"",
-        cep:"",
-        endereco:"",
-        endereco2:"",
-        cidade:"",
-        ceep:"",
-        validade:""
+  data() {
+    return {
+      form: {
+        nome: "",
+        sobrenome: "",
+        cidade: "",
+        estado: "",
+        cep: "",
+        logradouro: "",
+        user: "",
+        email: " ",
+        senha: " ",
       },
-      email: " ",
-      senha: " ",
-    }
+    };
   },
   methods: {
-    
     SingUp() {
       // firebase.auth().createUserWithEmailAndPassword(this.email,this.senha).then(
       //   (user) => {
@@ -154,56 +172,46 @@ export default {
       //   }
       // );
     },
-    async obterCadastro(){
-      this.register = await this.$services.register.getAll();
-      console.log(this.register);
-    },    
-    async postRegistro(){
-      console.log(this.instituicao);
-      let response = await this.$services.register.post(this.instituicao);
-      console.log(response);
-    },
-    async putRegistro(){
-      let refresh = {
-        nome: "atualiza usuario",
-        idade: 20,
-        email:"atualiza@gmail.com"
-        
-      }
-      let response = await this.$services.register.put(4,refresh)
-    },
-    async delRegistro(){
-     let response = await this.$services.register.delete(4)
-    }
-    
+    // async obterCadastro() {
+    //   this.register = await this.$services.register.getAll();
+    //   console.log(this.register);
+    // },
+    // async postRegistro() {
+    //   console.log(this.instituicao);
+    //   let response = await this.$services.register.post(this.instituicao);
+    //   console.log(response);
+    // },
+    // async putRegistro() {
+    //   let refresh = {
+    //     nome: "atualiza usuario",
+    //     idade: 20,
+    //     email: "atualiza@gmail.com",
+    //   };
+    //   let response = await this.$services.register.put(4, refresh);
+    // },
+    // async delRegistro() {
+    //   let response = await this.$services.register.delete(4);
+    // },
   },
-   created() {
+  created() {},
+  mounted() {
+    /*this.obterCadastro();*/
+    //this.postRegistro();
+    //this.obterCadastro();
+    //this.putRegistro();
+    //this.obterCadastro();
+    //this.delRegistro();
   },
-    mounted(){
-      /*this.obterCadastro();*/
-      //this.postRegistro();
-      //this.obterCadastro();
-      //this.putRegistro();
-      //this.obterCadastro();
-      //this.delRegistro();
-      
-    },
-    updated() {
-
-  }
-
- 
+  updated() {},
 };
-
 </script>
 
 <style>
-  .cadastro{
-    background-color:darkgreen;
-  }
-  #titulo{
-    color:cornsilk;
-    display: inline-flex;
-  }
-  
+.cadastro {
+  background-color: darkgreen;
+}
+#titulo {
+  color: cornsilk;
+  display: inline-flex;
+}
 </style>
