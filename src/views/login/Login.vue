@@ -53,7 +53,15 @@ export default {
     async login() {
       try {
         const resp = await this.$services.user.login(this.form);
-        if (resp) this.$router.push("/");
+        console.log('resp', resp);
+        if (!resp) {
+          this.$toast.error('Login incorreto, tente novamente!', {
+            position: 'top'
+          })
+          return;
+        }
+        this.$router.push("/");
+        localStorage.setItem('user_id', resp._id);
       } catch (error) {
         console.log("DEU RUIM!", error);
       }

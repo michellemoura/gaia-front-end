@@ -3,8 +3,9 @@
   <div>
     <!-- outline-primary, success, danger, info -->
   <b-navbar toggleable="lg" type="light" variant="primary">
-      <img class="logo" src="@/assets/img/gaiaLogo.png" alt="some text">
-    
+    <b-link :to="{name:'Home'}">
+      <img class="logo" src="@/assets/img/gaiaLogo.png" alt="some text" >
+    </b-link>
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
@@ -29,7 +30,7 @@
             <em >Usuario</em>
           </template>
           <b-dropdown-item href="#">Perfil</b-dropdown-item>
-          <b-dropdown-item :to="{name:'Login'}">Sair</b-dropdown-item>
+          <b-dropdown-item @click="logout">Sair</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -43,6 +44,13 @@ export default {
   data() {
     return {
       logado: true, 
+    }
+  },
+
+  methods: {
+    logout() {
+      localStorage.removeItem('user_id');
+      this.$router.push('/login');
     }
   }
   
