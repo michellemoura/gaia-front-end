@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <main class="app-content">
+    <main>
       <router-view></router-view>
     </main>
     <Footer />
@@ -19,10 +19,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .layout {
-    width: 100%;
-    height: 100%;
-  }
-</style>

@@ -7,15 +7,15 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/login/Login.vue')
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/cadastrar',
     children: [
-  //     {
-  //       path: '/login',
-  //       name: 'Login',
-  //       component: () => import('../views/login.vue')
-  //     },
       {
         path: '/cadastrar',
         name: 'Cadastrar',

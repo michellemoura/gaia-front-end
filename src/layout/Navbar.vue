@@ -14,8 +14,6 @@
        <b-nav-item :to="{name:'Instituicoes'}" >Instituições</b-nav-item>
        <b-nav-item :to="{name:'Cadastrar'}">Cadastrar</b-nav-item>
        <b-nav-item :to="{name:'Doacao'}">Fazer Doação</b-nav-item>
-       <b-nav-item v-if="this.logado" :to="{name:'Login'}" >Login</b-nav-item>
-       <b-nav-item v-else :to="{name:'Login'}" >Logout</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -25,21 +23,13 @@
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
         </b-nav-form>
 
-        <b-nav-item-dropdown text="Idioma" right>
-          <b-dropdown-item href="#">PT</b-dropdown-item>
-          <b-dropdown-item href="#">EN</b-dropdown-item>
-          <b-dropdown-item href="#">ES</b-dropdown-item>
-          <b-dropdown-item href="#">RU</b-dropdown-item>
-          <b-dropdown-item href="#">FA</b-dropdown-item>
-        </b-nav-item-dropdown>
-
         <b-nav-item-dropdown right v-if="this.logado">
           <!-- Using 'button-content' slot -->
           <template v-slot:button-content>
             <em >Usuario</em>
           </template>
           <b-dropdown-item href="#">Perfil</b-dropdown-item>
-          <b-dropdown-item href="#">Sair</b-dropdown-item>
+          <b-dropdown-item :to="{name:'Login'}">Sair</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>

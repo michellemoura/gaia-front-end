@@ -16,6 +16,12 @@ export default {
     Navbar,
     MainHomepage,
     FooterHomepage
+  },
+  computed: {
+    isLogado() {
+      return this.$route.path !== '/login';
+    }
+    
   }
 };
 </script>
