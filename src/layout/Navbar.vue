@@ -29,7 +29,7 @@
           <template v-slot:button-content>
             <em >Usuario</em>
           </template>
-          <b-dropdown-item href="#">Perfil</b-dropdown-item>
+          <b-dropdown-item @click="perfil">Perfil</b-dropdown-item>
           <b-dropdown-item @click="logout">Sair</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
@@ -48,6 +48,14 @@ export default {
   },
 
   methods: {
+    perfil() {
+      const user_id = localStorage.getItem('user_id');
+      if(user_id)
+        this.$router.push(`/cadastrar/${user_id}`);
+      else
+        this.$router.push('/login');
+    },
+
     logout() {
       localStorage.removeItem('user_id');
       this.$router.push('/login');

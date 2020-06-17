@@ -165,7 +165,22 @@ export default {
       },
     };
   },
+
+  created() {
+    if(this.$route.params.id) {
+      this.findOne(this.$route.params.id);
+    }
+  },
+
   methods: {
+    async findOne(id) {
+      const user = await this.$services.user.getById(id);
+      console.log('user', user);
+      if(user) {
+        this.form = user;
+      }
+    },
+
     async save() {
       const save = Object.assign({}, this.form);
       try {

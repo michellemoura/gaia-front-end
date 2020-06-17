@@ -1,155 +1,72 @@
 <template>
-    <div>
+  <div class="container mt-3">
+    <b-row>
       <div
-        class="Wrapper_wrapper__28JZg BlockContentHtml_wrapper__3bo2x Wrapper_wrapper-default-width__2PRux"
-        style="background-image: url(&quot;undefined&quot;);"
+        v-for="(doar, i) in doacoes"
+        :key="i"
+        class="col-md-4"
       >
-        <div class="Wrapper_container__3c3aY Wrapper_container-default-width__2lKTA">
-          <div class="HtmlMarkup_html__3sUPP">
-            <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-            
-            <div id="page-custom">
-              <div class="container max-center">
-                <div class="row">
-                  <div class="col-md-12">
-                    <h1 class="title-line-center">Faça sua Doação</h1>
-                  </div>
-                </div>
+        <b-link href="#" @click="$bvModal.show('modal-'+i)">
+          <img :src="doar.path" alt="doar">
+        </b-link>
 
-                <div class="row">
-                  <div class="col-md-12">
-                    <p
-                      class="text-center"
-                    >Clique para fazer uma doação</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-3 col-sm-6 text-center container-lines">
-                    <div class="container-lines">
-                      
-                      
-                      <div
-                        class="img-line"
-                      >&nbsp;</div>
-        
-                      <h2>
-
-                        <a class="title-lines" v-bind:style="{ 'background-image': 'url(' + doa1 + ')' }">
-                          <span class="lines">Doar 5 R$</span>
-                        </a>
-                      </h2>
-                    </div>
-                  </div>
-                  
-                  <div class="col-md-3 col-sm-6 text-center">
-                    <div class="container-lines">
-                      <div
-                        class="img-line"
-                        style="background-image: url('@/assets/imgs/michelle.jpg')"
-                      >&nbsp;</div>
-
-                      <h2>
-                        <a class="title-lines" v-bind:style="{ 'background-image': 'url(' + doa2 + ')' }">
-                          <span class="lines">Doar 10 R$</span>
-                        </a>
-                      </h2>
-                    </div>
-                  </div>
-
-                  <div class="col-md-3 col-sm-6 text-center container-lines">
-                    <div class="container-lines">
-                      <div
-                        class="img-line"
-                        style="background-image: url('@/assets/imgs/michelle.jpg')"
-                      >&nbsp;</div>
-
-                      <h2>
-                        <a class="title-lines" v-bind:style="{ 'background-image': 'url(' + doa3 + ')' }">
-                          <span class="lines">Doar 20R$</span>
-                        </a>
-                      </h2>
-                    </div>
-                  </div>
-
-                  <div class="col-md-3 col-sm-6 text-center container-lines">
-                    <div class="container-lines">
-                      <div
-                        class="img-line"
-                        style="background-image: url('')"
-                      >&nbsp;</div>
-
-                      <h2>
-                        <a class="title-lines" v-bind:style="{ 'background-image': 'url(' + doa4 + ')' }">
-                          <span class="lines">Doar 50R$</span>
-                        </a>
-                      </h2>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <b-modal :id="'modal-'+i" hide-footer>
+          <template v-slot:modal-title>
+            Doação
+          </template>
+          <div class="d-block text-center">
+            <h3>Você quer R$ {{doar.valor}},00?</h3>
           </div>
-        </div>
+          <b-button class="mt-3" variant="outline-success" block @click="confirmModal(i, doar.valor)">Sim</b-button>
+          <b-button class="mt-3" variant="outline-secondary" block @click="negativeModal(i)">Não</b-button>
+        </b-modal>
       </div>
-    </div>
+    </b-row>
+  </div>
 </template>
 
 <script>
-
 export default {
-data() {
-  return {
-  doa1:require('@/assets/img/doar/doar20.svg'),
-  doa2:require('@/assets/img/doar/doar50.svg'),
-  doa3:require('@/assets/img/doar/doar100.svg'),
-  doa4:require('@/assets/img/doar/doar200.svg')
+  data() {
+    return {
+      doacoes: [
+        {
+          valor: 20,
+          path: require('@/assets/img/doar/doar20.svg')
+        },
+        {
+          valor: 50,
+          path: require('@/assets/img/doar/doar50.svg')
+        },
+        {
+          valor: 100,
+          path: require('@/assets/img/doar/doar100.svg')
+        },
+        {
+          valor: 200,
+          path: require('@/assets/img/doar/doar200.svg')
+        }
+      ]
+    };
+  },
+
+  methods: {
+    confirmModal(index, valor) {
+      console.log('valor', valor);
+      this.$bvModal.hide(`modal-${index}`);
+    },
+
+    negativeModal(index) {
+      console.log('negative', index);
+      this.$bvModal.hide(`modal-${index}`);
+    }
   }
-}}
+};
 </script>
 
-<style scoped>
-#page-custom h2 {
-  font-weight: 300;
-}
-#page-custom .container-lines,
-#page-custom .img-line {
-  position: relative;
-  height: 27.5rem;
-  margin-bottom: 30px;
-}
-#page-custom .container-lines:hover {
-  top: -1px;
-  transition: all 3s ease;
-}
-
-#page-custom .img-line {
-  background-position-x: center;
-  background-repeat: no-repeat;
-}
-#page-custom .title-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  color: #fff;
-  font-size: 1.375rem;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-#page-custom .title-lines:hover {
-  color: #fff;
-}
-#page-custom .lines {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+<style>
+  .doacoes {
+    display: flex;
+    flex-direction: row;
+  }
 </style>

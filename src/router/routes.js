@@ -19,7 +19,11 @@ const routes = [
       {
         path: '/cadastrar',
         name: 'Cadastrar',
-        component: () => import('../views/cadastro/Cadastrar.vue')
+        component: () => import('../views/cadastro/Cadastrar.vue'),
+        children: [{
+          path: ':id',
+          name: 'perfil',
+        }]
       },
       {
         path: '/instituicoes',

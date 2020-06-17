@@ -20,28 +20,28 @@ export class HttpService {
     return resp.data;
   }
 
-  getById(id) {
-    const resp = axios.get(`${this.url}/${id}`);
-    return resp;
+  async getById(id) {
+    const resp = await axios.get(`${this.url}/${id}`);
+    return resp.data;
   }
 
-  create(params) {
-    const resp = axios.post(this.url, params);
-    return resp;
+  async create(params) {
+    const resp = await axios.post(this.url, params);
+    return resp.data;
   }
 
-  put(id, params) {
-    const resp = axios.put(`${this.url}/${id}`, params);
-    return resp;
+  async put(id, params) {
+    const resp = await axios.put(`${this.url}/${id}`, params);
+    return resp.data;
   }
 
-  patch(id, params) {
-    const resp = axios.patch(`${this.url}/${id}`, params);
-    return resp;
+  async patch(id, params) {
+    const resp = await axios.patch(`${this.url}/${id}`, params);
+    return resp.data;
   }
 
-  delete(id) {
-    const resp = axios.delete(`${this.url}/${id}`);
-    return resp;
+  async delete(id) {
+    const resp = await axios.delete(`${this.url}/${id}`);
+    return resp.data;
   }
 }
