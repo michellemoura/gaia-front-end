@@ -14,6 +14,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 Vue.prototype.$services = services;
 Vue.config.productionTip = false;
 Vue.config.productionTip = false;
+Vue.config.lint = false;
 
 
 Vue.use(BootstrapVue);
