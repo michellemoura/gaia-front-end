@@ -136,6 +136,32 @@
               placeholder="Digite sua senha"
             ></b-form-input>
           </b-form-group>
+          <b-form-group
+            id="input-file"
+            label="Imagem"
+            class="col-md-6"
+          >
+            <b-form-file v-model="file" ref="file-input" class="mb-2"></b-form-file>
+          </b-form-group>
+        </b-row>
+        
+        <b-row>
+          <b-form-group
+              id="input-descricao"
+              label="Descrição"
+              label-for="input-3"
+              class="col-md-12"
+            >
+            <b-form-textarea
+              id="input-3"
+              v-model="form.descricao"
+              type="textarea"
+              required
+              rows="3"
+              max-rows="6"
+              placeholder="Digite sua descrição"
+            ></b-form-textarea>
+          </b-form-group>
         </b-row>
         <div class="d-flex justify-content-end">
           <b-button class="mx-1" type="submit" variant="primary"
@@ -152,6 +178,7 @@
 export default {
   data() {
     return {
+      file: null,
       form: {
         nome: "",
         sobrenome: "",
@@ -162,8 +189,18 @@ export default {
         user: "",
         email: " ",
         senha: " ",
+        imagem: null,
+        descricao: "",
       },
     };
+  },
+
+  watch: {
+    async file(file) {
+      console.log(file)
+      const result = await this.toBase64(file);
+      console.log('tste file', result)
+    }
   },
 
   created() {
@@ -173,6 +210,10 @@ export default {
   },
 
   methods: {
+    toBase64(file) {
+      const reader = new FileReader();
+      return reader.readAsDataURL(file);
+    },
     async findOne(id) {
       const user = await this.$services.user.getById(id);
       console.log('user', user);
@@ -184,6 +225,7 @@ export default {
     async save() {
       const save = Object.assign({}, this.form);
       try {
+        console.log(save);
         const resp = await this.$services.user.create(save);
         if (resp) {
           this.form = resp;
