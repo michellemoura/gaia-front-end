@@ -14,7 +14,7 @@
        <b-nav-item :to="{name:'Home'}" >Inicio</b-nav-item>
        <b-nav-item :to="{name:'Instituicoes'}" >Instituições</b-nav-item>
        <b-nav-item :to="{name:'Cadastrar'}">Cadastrar</b-nav-item>
-       <b-nav-item :to="{name:'Doacao'}">Fazer Doação</b-nav-item>
+       <b-nav-item @click="doar">Fazer Doação</b-nav-item>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -48,6 +48,13 @@ export default {
   },
 
   methods: {
+    doar() {
+      const isAuth = localStorage.getItem('user_id');
+      if(isAuth) this.$router.push('/doacao');
+      else this.$router.push('/login');
+
+    },
+
     perfil() {
       const user_id = localStorage.getItem('user_id');
       if(user_id)
@@ -58,7 +65,7 @@ export default {
 
     logout() {
       localStorage.removeItem('user_id');
-      this.$router.push('/login');
+      // this.$router.push('/login');
     }
   }
   
