@@ -35,12 +35,12 @@
           <b-form-group
             id="input-cidade"
             label="Cidade"
-            label-for="input-2"
+            label-for="input-3"
             class="col-md-6"
           >
             <b-form-input
-              id="input-2"
-              v-model="form.cidade"
+              id="input-3"
+              v-model="form.endereco.cidade"
               type="text"
               required
               placeholder="Digite sua cidade"
@@ -50,12 +50,12 @@
           <b-form-group
             id="input-estado"
             label="Estado"
-            label-for="input-2"
+            label-for="input-4"
             class="col-md-6"
           >
             <b-form-input
-              id="input-2"
-              v-model="form.estado"
+              id="input-4"
+              v-model="form.endereco.estado"
               type="text"
               required
               placeholder="Digite seu Estado"
@@ -65,12 +65,12 @@
           <b-form-group
             id="input-cep"
             label="Cep"
-            label-for="input-2"
+            label-for="input-5"
             class="col-md-6"
           >
             <b-form-input
-              id="input-2"
-              v-model="form.cep"
+              id="input-5"
+              v-model="form.endereco.cep"
               type="text"
               required
               placeholder="Digite seu CEP"
@@ -80,12 +80,12 @@
           <b-form-group
             id="input-logradouro"
             label="Logradouro"
-            label-for="input-2"
+            label-for="input-6"
             class="col-md-6"
           >
             <b-form-input
-              id="input-2"
-              v-model="form.logradouro"
+              id="input-6"
+              v-model="form.endereco.logradouro"
               type="text"
               required
               placeholder="Digite seu logradouro"
@@ -95,12 +95,12 @@
           <b-form-group
             id="input-email"
             label="Email"
-            label-for="input-2"
+            label-for="input-7"
             class="col-md-6"
           >
             <b-form-input
-              id="input-2"
-              v-model="form.email"
+              id="input-7"
+              v-model="form.conta.email"
               type="text"
               required
               placeholder="Digite seu email"
@@ -110,12 +110,12 @@
           <b-form-group
             id="input-user"
             label="Usuário"
-            label-for="input-2"
+            label-for="input-8"
             class="col-md-6"
           >
             <b-form-input
-              id="input-2"
-              v-model="form.user"
+              id="input-8"
+              v-model="form.conta.user"
               type="text"
               required
               placeholder="Digite seu usuário"
@@ -125,23 +125,16 @@
           <b-form-group
             id="input-senha"
             label="Senha"
-            label-for="input-2"
+            label-for="input-9"
             class="col-md-6"
           >
             <b-form-input
-              id="input-2"
-              v-model="form.senha"
+              id="input-9"
+              v-model="form.conta.senha"
               type="password"
               required
               placeholder="Digite sua senha"
             ></b-form-input>
-          </b-form-group>
-          <b-form-group
-            id="input-file"
-            label="Imagem"
-            class="col-md-6"
-          >
-            <b-form-file v-model="file" ref="file-input" class="mb-2"></b-form-file>
           </b-form-group>
         </b-row>
         
@@ -149,12 +142,12 @@
           <b-form-group
               id="input-descricao"
               label="Descrição"
-              label-for="input-3"
+              label-for="input-10"
               class="col-md-12"
             >
             <b-form-textarea
-              id="input-3"
-              v-model="form.descricao"
+              id="input-10"
+              v-model="form.instituicao.descricao"
               type="textarea"
               required
               rows="3"
@@ -163,6 +156,7 @@
             ></b-form-textarea>
           </b-form-group>
         </b-row>
+
         <div class="d-flex justify-content-end">
           <b-button class="mx-1" type="submit" variant="primary"
             >Salvar</b-button
@@ -182,27 +176,24 @@ export default {
       form: {
         nome: "",
         sobrenome: "",
-        cidade: "",
-        estado: "",
-        cep: "",
-        logradouro: "",
-        user: "",
-        email: " ",
-        senha: " ",
-        imagem: null,
-        descricao: "",
+        endereco: {
+          cidade: "",
+          estado: "",
+          cep: "",
+          logradouro: "",
+        },
+        conta: {
+          user: "",
+          email: " ",
+          senha: " ",
+        },
+        instituicao: {
+          image: "",
+          descricao: "",
+        }
       },
     };
   },
-
-  watch: {
-    async file(file) {
-      console.log(file)
-      const result = await this.toBase64(file);
-      console.log('tste file', result)
-    }
-  },
-
   created() {
     if(this.$route.params.id) {
       this.findOne(this.$route.params.id);
@@ -210,13 +201,8 @@ export default {
   },
 
   methods: {
-    toBase64(file) {
-      const reader = new FileReader();
-      return reader.readAsDataURL(file);
-    },
     async findOne(id) {
       const user = await this.$services.user.getById(id);
-      console.log('user', user);
       if(user) {
         this.form = user;
       }
@@ -231,7 +217,7 @@ export default {
           this.form = resp;
         }
       } catch (error) {
-        console.err("Deu erro", error);
+        console.error("Deu erro", error);
       }
     },
     cancel() {
